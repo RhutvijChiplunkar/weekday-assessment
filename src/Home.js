@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react';
+import Paper from '@mui/material/Paper';
+import { Grid } from '@mui/material';
 
 const Home = () => {
 
@@ -18,11 +20,10 @@ const Home = () => {
     };
 
     const [data, setData] = useState(null); // State to store fetched data
-    var x;
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.post('https://api.weekday.technology/adhoc/getSampleJdJSON',requestOptions); // Replace with your API URL
+            const response = await axios.post('https://api.weekday.technology/adhoc/getSampleJdJSON', requestOptions); // Replace with your API URL
             setData(response.data);
         };
 
@@ -35,11 +36,24 @@ const Home = () => {
     return (
         <div>
             <h2>data</h2>
-            {data["jdList"].map((item,id)=>{
-                return (<h1 key={id}>{item.jdUid}</h1>)
-            })}
+            <>
+                <Grid container spacing={2}>  {/* Add spacing between grid items */}
+                    {data["jdList"].map((item, id) => {
+                        return (
+                            <Grid item xs={12} md={6} lg={4} key={id}>
+                                <Paper variant="elevation">
+                                    {item.jobRole}
+                                </Paper>
+                            </Grid>
 
-        </div>
+                        )
+                    })}
+
+                </Grid>
+            </>
+
+
+        </div >
     )
 }
 
