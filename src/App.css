@@ -1,16 +1,6 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  /* text-align: center; */
+  margin: 10px;
 }
 
 .App-header {
@@ -24,15 +14,24 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card{
+  /* background-color: red; */
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.grids{
+  margin: 20px;
+}
+
+.btn-div{
+  width: 100%;
+  height: 10%;
+  background-color: aquamarine;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn{
+  color: black;
+  font-weight: bold;
 }
