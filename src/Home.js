@@ -15,6 +15,9 @@ import {
 } from '@mui/material/styles';
 import { Box, makeStyles } from '@mui/material';
 import { AccountCircleRounded } from '@mui/icons-material';
+import ExpandableParagraph from './ExpandableParagraph';
+
+
 
 const violetBase = '#FFFFFF';
 const violetMain = alpha(violetBase, 0.7);
@@ -46,11 +49,12 @@ const Home = () => {
         body
     };
 
-    const [data, setData] = useState(null); // State to store fetched data
+    // This state is used to store fetched data from API
+    const [data, setData] = useState(null); 
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.post('https://api.weekday.technology/adhoc/getSampleJdJSON', requestOptions); // Replace with your API URL
+            const response = await axios.post('https://api.weekday.technology/adhoc/getSampleJdJSON', requestOptions); 
             setData(response.data);
         };
 
@@ -68,7 +72,7 @@ const Home = () => {
                         return (
                             <Grid item xs={12} md={6} lg={4} key={id}>
 
-                                <Paper variant="elevation">
+                                <Paper variant="elevation" className='indi-card'>
                                     {/* {item.jobRole} */}
                                     <CardContent className='card'>
                                         {/*Comapny logo, name, role and location */}
@@ -80,8 +84,8 @@ const Home = () => {
                                                     </Grid>
                                                     <Grid xs={8}>
                                                         <div>
-                                                            <p>{item.companyName}</p>
-                                                            <p>{item.jobRole}</p>
+                                                            <h2 className='company-name'>{item.companyName}</h2>
+                                                            <h3 className='company-jobrole'>{item.jobRole}</h3>
                                                             <p>{item.location}</p>
                                                         </div>
                                                     </Grid>
@@ -97,7 +101,11 @@ const Home = () => {
                                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                             <div>
                                                 <p>About us:</p>
-                                                <p>{item.jobDetailsFromCompany}</p>
+                                                {/* <p>{item.jobDetailsFromCompany}</p> */}
+                                                <ExpandableParagraph
+                                                    text={item.jobDetailsFromCompany}
+                                                    maxLength={125} // Set the maximum length of characters to display
+                                                />
                                             </div>
                                         </Typography>
                                         <Typography variant="body2">

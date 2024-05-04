@@ -15,7 +15,6 @@
 }
 
 .card{
-  /* background-color: red; */
   text-align: left;
 }
 
@@ -57,5 +56,17 @@ img{
 
 .company-info{
   margin-top: 5px;
-  height: 100px;
+}
+
+.company-name{
+  margin-top: -5px;
+  margin-bottom: -10px;
+}
+.company-jobrole{
+  margin-bottom: -10px;
+}
+
+.indi-card{
+  margin: 15px;
+  border-radius: 5px;
 }
