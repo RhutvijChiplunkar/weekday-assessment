@@ -13,14 +13,14 @@ import {
     alpha,
     getContrastRatio,
 } from '@mui/material/styles';
-import { Box, makeStyles } from '@mui/material';
+import { Box } from '@mui/material';
 import { AccountCircleRounded } from '@mui/icons-material';
 import ExpandableParagraph from './ExpandableParagraph';
 
 
 
 const violetBase = '#FFFFFF';
-const violetMain = alpha(violetBase, 0.7);
+const violetMain = alpha(violetBase, 1);
 
 const theme = createTheme({
     palette: {
@@ -73,16 +73,18 @@ const Home = () => {
                             <Grid item xs={12} md={6} lg={4} key={id}>
 
                                 <Paper variant="elevation" className='indi-card'>
-                                    {/* {item.jobRole} */}
+                                    <div className='card-top'>
+                                    <p className='posting-days'>⏳ Posted 5 Days ago</p>
+                                    </div>
                                     <CardContent className='card'>
                                         {/*Comapny logo, name, role and location */}
                                         <div className='company-info'>
                                             <Box>
-                                                <Grid container spacing={0}>
-                                                    <Grid xs={4}>
+                                                <Grid item container spacing={0}>
+                                                    <Grid item xs={4}>
                                                         <img src={item.logoUrl} alt="Image" />
                                                     </Grid>
-                                                    <Grid xs={8}>
+                                                    <Grid item xs={8}>
                                                         <div>
                                                             <h2 className='company-name'>{item.companyName}</h2>
                                                             <h3 className='company-jobrole'>{item.jobRole}</h3>
@@ -93,25 +95,24 @@ const Home = () => {
                                             </Box>
                                         </div>
                                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                            <p>Estimated Salary: {item.minJdSalary} - {item.maxJdSalary} LPA<span aria-label="Offered salary range" class=""> ✅</span><br /></p>
+                                            <p>Estimated Salary: {item.minJdSalary==null ? 0:item.minJdSalary} - {item.maxJdSalary} LPA<span aria-label="Offered salary range"> ✅</span><br /></p>
                                         </Typography>
-                                        <Typography variant="h5" component="div">
+                                        <Typography variant="h6" component="div">
                                             <p>About Company:</p>
                                         </Typography>
-                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        <Typography color="text.secondary">
                                             <div>
                                                 <p>About us:</p>
-                                                {/* <p>{item.jobDetailsFromCompany}</p> */}
                                                 <ExpandableParagraph
                                                     text={item.jobDetailsFromCompany}
-                                                    maxLength={125} // Set the maximum length of characters to display
+                                                    maxLength={125}
                                                 />
                                             </div>
                                         </Typography>
                                         <Typography variant="body2">
                                             <div>
                                                 <h3>Minimum experience</h3>
-                                                <h4>{item.minExp} Years</h4>
+                                                <h4>{item.minExp==null ? 0:item.minExp} Years</h4>
                                             </div>
                                         </Typography>
                                         <Typography>
