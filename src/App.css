@@ -23,7 +23,7 @@
   margin: 20px;
 }
 
-.btn-div{
+.btn-div-1{
   width: 100%;
   height: 10%;
   background-color: aquamarine;
@@ -31,7 +31,31 @@
   text-align: center;
 }
 
-.btn{
+.btn-1{
   color: black;
   font-weight: bold;
+}
+
+.btn-div-2{
+  margin-top: 10px;
+  width: 100%;
+  height: 10%;
+  background-color: purple;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn-2{
+  font-weight: bold;
+  color: red;
+}
+
+img{
+  width: 100px;
+  height: 100px;
+}
+
+.company-info{
+  margin-top: 5px;
+  height: 100px;
 }

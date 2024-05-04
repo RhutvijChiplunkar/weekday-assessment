@@ -7,6 +7,28 @@ import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import './App.css';
+import {
+    createTheme,
+    ThemeProvider,
+    alpha,
+    getContrastRatio,
+} from '@mui/material/styles';
+import { Box, makeStyles } from '@mui/material';
+import { AccountCircleRounded } from '@mui/icons-material';
+
+const violetBase = '#FFFFFF';
+const violetMain = alpha(violetBase, 0.7);
+
+const theme = createTheme({
+    palette: {
+        violet: {
+            main: violetMain,
+            light: alpha(violetBase, 0.5),
+            dark: alpha(violetBase, 0.9),
+            contrastText: getContrastRatio(violetMain, '#fff') > 4.5 ? '#fff' : '#111',
+        },
+    },
+});
 
 const Home = () => {
 
@@ -40,20 +62,37 @@ const Home = () => {
 
     return (
         <div className='grids'>
-            <h2>data</h2>
             <>
                 <Grid container spacing={2}>  {/* Add spacing between grid items */}
                     {data["jdList"].map((item, id) => {
                         return (
                             <Grid item xs={12} md={6} lg={4} key={id}>
+
                                 <Paper variant="elevation">
                                     {/* {item.jobRole} */}
                                     <CardContent className='card'>
+                                        {/*Comapny logo, name, role and location */}
+                                        <div className='company-info'>
+                                            <Box>
+                                                <Grid container spacing={0}>
+                                                    <Grid xs={4}>
+                                                        <img src={item.logoUrl} alt="Image" />
+                                                    </Grid>
+                                                    <Grid xs={8}>
+                                                        <div>
+                                                            <p>{item.companyName}</p>
+                                                            <p>{item.jobRole}</p>
+                                                            <p>{item.location}</p>
+                                                        </div>
+                                                    </Grid>
+                                                </Grid>
+                                            </Box>
+                                        </div>
                                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                             <p>Estimated Salary: {item.minJdSalary} - {item.maxJdSalary} LPA<span aria-label="Offered salary range" class=""> ✅</span><br /></p>
                                         </Typography>
                                         <Typography variant="h5" component="div">
-                                            <p class="MuiTypography-root MuiTypography-body1 css-1hw7dw8">About Company:</p>
+                                            <p>About Company:</p>
                                         </Typography>
                                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                             <div>
@@ -68,12 +107,20 @@ const Home = () => {
                                             </div>
                                         </Typography>
                                         <Typography>
-                                            <div className='btn-div'>
+                                            <div className='btn-div-1'>
                                                 <Button className='btn'>⚡ Easy Apply</Button>
+                                            </div>
+                                        </Typography>
+                                        <Typography>
+                                            <div className='btn-div-2'>
+                                                <ThemeProvider theme={theme}>
+                                                    <Button color='violet' className='btn-2' startIcon={<AccountCircleRounded />} >Unlock referral ask</Button>
+                                                </ThemeProvider>
                                             </div>
                                         </Typography>
                                     </CardContent>
                                 </Paper>
+
                             </Grid>
 
                         )
