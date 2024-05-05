@@ -19,5 +19,5 @@ Install the node modules by running the following command
 Start the React Application by running the following command
 ### `npm start`
 
-### Step 5
+## Step 5
 Open [http://localhost:3000](http://localhost:3000) to the React Application in your browser.
