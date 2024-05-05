@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
-import { Select, MenuItem } from '@mui/material';
-import TextField from '@mui/material/TextField';
 
-function MultiFilterData({ data, /* currentData, */setCurrentData }) {
-
-
-  const options = ['', 'Remote', 'hybrid', 'In-office'];
-
-  const [value, setValue] = useState('');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+function MultiFilterData({ data, setCurrentData }) {
 
   const [filters, setFilters] = useState({
     minExp: 0,
@@ -24,6 +13,8 @@ function MultiFilterData({ data, /* currentData, */setCurrentData }) {
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
     var exp;
+
+    //Different conditions based on filter
     if (name === 'minExp') {
       exp = parseInt(value)
       console.log(name, value);
@@ -63,76 +54,56 @@ function MultiFilterData({ data, /* currentData, */setCurrentData }) {
     setCurrentData(filtered);
   };
 
-  // Call filterData whenever a filter changes
+  // Call filterData whenever a filter changes to render again
   React.useEffect(() => {
     filterData();
-  }, [filters]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [filters]); 
 
   return (
     <div>
 
-      <select name="location" value={filters.location} onChange={handleFilterChange}>
+      <select className='abc' name="location" value={filters.location} onChange={handleFilterChange}>
         <option value="">All locations</option>
         <option value="delhi ncr">delhi ncr</option>
         <option value="mumbai">mumbai</option>
         <option value="remote">remote</option>
         <option value="chennai">chennai</option>
+        <option value="bangalore">bangalore</option>
       </select>
 
-      <select name="jobRole" value={filters.jobRole} onChange={handleFilterChange}>
+      <select className='abc' name="jobRole" value={filters.jobRole} onChange={handleFilterChange}>
         <option value="">All roles</option>
         <option value="frontend">frontend</option>
         <option value="ios">ios</option>
         <option value="android">android</option>
+        <option value="backend">backend</option>
+        <option value="tech lead">tech lead</option>
       </select>
 
-      <select name="minExp" value={filters.minExp} onChange={handleFilterChange}>
-        <option value="">Years of experience</option>
+      <select className='abc' name="minExp" value={filters.minExp} onChange={handleFilterChange} aria-placeholder='abcdef'>
+        <option value="">Minimum years of experience</option>
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
       </select>
 
-      <select name="minJdSalary" value={filters.minJdSalary} onChange={handleFilterChange}>
-        <option value="">Min Salary</option>
+      <select className='abc' name="minJdSalary" value={filters.minJdSalary} onChange={handleFilterChange}>
+        <option value="">Min Base Pay</option>
         <option value="3">3</option>
         <option value="15">15</option>
+        <option value="23">23</option>
+        <option value="26">26</option>
         <option value="35">35</option>
+        <option value="61">61</option>
+        <option value="64">64</option>
+        <option value="100">100</option>
       </select>
-
-      <Select value={value} onChange={handleChange} placeholder='Select mode'>
-        {options.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </Select>
-
-      <Select
-        native
-        value={filters.minJdSalary} onChange={handleFilterChange} placeholder='abcd'
-      >
-        <MenuItem value="" disabled>
-          {/* Placeholder text */}
-          Select an option
-        </MenuItem>
-        {/* <option aria-label="None" value="" />
-        <option value={10}>Ten</option>
-        <option value={20}>Twenty</option>
-        <option value={30}>Thirty</option> */}
-        {options.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </Select>
-
-      <ul>
-        {filteredData.map((item, id) => (
-          <li key={item.id}>{item.companyName}</li>
-        ))}
-      </ul>
 
     </div>
   );

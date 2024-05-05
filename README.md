@@ -20,4 +20,4 @@ Start the React Application by running the following command
 ### `npm start`
 
 ## Step 5
-Open [http://localhost:3000](http://localhost:3000) to the React Application in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view the running React Application in your browser.

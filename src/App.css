@@ -53,8 +53,19 @@ img{
   display: flex;
   margin-left: 15px;
 }
+
 .posting-days{
   border: 1px solid lightgray;
   border-radius: 20px;
   padding: 5px 15px;
+}
+.container-filter{
+  display: flex;
+  margin: 15px;
+}
+
+.abc{
+  margin-right: 10px;
+  height: 50px;
+  width: 250px;
 }
