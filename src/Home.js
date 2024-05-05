@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
+import { TextField } from '@mui/material';
 import './App.css';
 import {
     createTheme,
@@ -39,7 +40,7 @@ const Home = () => {
     myHeaders.append("Content-Type", "application/json");
 
     const body = JSON.stringify({
-        "limit": 947,
+        "limit": 10,
         "offset": 0
     });
 
@@ -50,11 +51,12 @@ const Home = () => {
     };
 
     // This state is used to store fetched data from API
-    const [data, setData] = useState(null); 
+    const [data, setData] = useState(null);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.post('https://api.weekday.technology/adhoc/getSampleJdJSON', requestOptions); 
+            const response = await axios.post('https://api.weekday.technology/adhoc/getSampleJdJSON', requestOptions);
             setData(response.data);
         };
 
@@ -66,15 +68,22 @@ const Home = () => {
 
     return (
         <div className='grids'>
+            <form>
+                <TextField label="Search company" variant="standard" onChange={(e) => setSearch(e.target.value)} />
+            </form>
             <>
                 <Grid container spacing={2}>  {/* Add spacing between grid items */}
-                    {data["jdList"].map((item, id) => {
+                    {data["jdList"].filter((item) => {
+                        return search.toLowerCase() === ''
+                            ? item
+                            : item.companyName.toLowerCase().includes(search);
+                    }).map((item, id) => {
                         return (
                             <Grid item xs={12} md={6} lg={4} key={id}>
 
                                 <Paper variant="elevation" className='indi-card'>
                                     <div className='card-top'>
-                                    <p className='posting-days'>⏳ Posted 5 Days ago</p>
+                                        <p className='posting-days'>⏳ Posted 5 Days ago</p>
                                     </div>
                                     <CardContent className='card'>
                                         {/*Comapny logo, name, role and location */}
@@ -95,7 +104,7 @@ const Home = () => {
                                             </Box>
                                         </div>
                                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                            <p>Estimated Salary: {item.minJdSalary==null ? 0:item.minJdSalary} - {item.maxJdSalary} LPA<span aria-label="Offered salary range"> ✅</span><br /></p>
+                                            <p>Estimated Salary: {item.minJdSalary == null ? 0 : item.minJdSalary} - {item.maxJdSalary} LPA<span aria-label="Offered salary range"> ✅</span><br /></p>
                                         </Typography>
                                         <Typography variant="h6" component="div">
                                             <p>About Company:</p>
@@ -112,7 +121,7 @@ const Home = () => {
                                         <Typography variant="body2">
                                             <div>
                                                 <h3>Minimum experience</h3>
-                                                <h4>{item.minExp==null ? 0:item.minExp} Years</h4>
+                                                <h4>{item.minExp == null ? 0 : item.minExp} Years</h4>
                                             </div>
                                         </Typography>
                                         <Typography>
