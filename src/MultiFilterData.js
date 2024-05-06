@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function MultiFilterData({ data, setCurrentData }) {
 
   const [filters, setFilters] = useState({
-    minExp: 0,
+    minExp: '',
     location: '',
     jobRole: '',
     minJdSalary: 0
@@ -42,14 +42,12 @@ function MultiFilterData({ data, setCurrentData }) {
 
   // Function to filter the data based on all selected filters
   const filterData = () => {
-    console.log(filters)
     let filtered = [...data];
     for (const filter in filters) {
       if (filters[filter]) {
         filtered = filtered.filter(item => item[filter] === filters[filter]);
       }
     }
-    console.log(filtered)
     setFilteredData(filtered);
     setCurrentData(filtered);
   };
@@ -80,7 +78,7 @@ function MultiFilterData({ data, setCurrentData }) {
         <option value="tech lead">tech lead</option>
       </select>
 
-      <select className='abc' name="minExp" value={filters.minExp} onChange={handleFilterChange} aria-placeholder='abcdef'>
+      <select className='abc' name="minExp" value={filters.minExp} onChange={handleFilterChange}>
         <option value="">Minimum years of experience</option>
         <option value="0">0</option>
         <option value="1">1</option>

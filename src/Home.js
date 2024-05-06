@@ -69,8 +69,12 @@ const Home = () => {
             <div className='filters-all'>
                 <Box component="section">
                     <div className='container-filter'>
-                        <MultiFilterData data={data["jdList"]} currentData={currentData} setCurrentData={setCurrentData} />
-                        <TextField label="Search company name" variant="outlined" onChange={(e) => setSearch(e.target.value)} />
+                        <div>
+                            <MultiFilterData data={data["jdList"]} currentData={currentData} setCurrentData={setCurrentData} />
+                        </div>
+                        <div>
+                            <TextField label="Search company name" variant="outlined" onChange={(e) => setSearch(e.target.value)} />
+                        </div>
                     </div>
                 </Box>
             </div>
